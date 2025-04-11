@@ -2,35 +2,35 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de Cuadros</title>
-    <style>
-        body { font-family: sans-serif; padding: 2rem; }
-        h1 { color: #4A90E2; }
-        .cuadro { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; }
-        form input, form button { margin-top: 0.5rem; display: block; }
-    </style>
 </head>
 <body>
-<h1>Galería de Cuadros</h1>
+    <h1>Galería de Cuadros</h1>
+    <h2>Agregar un nuevo cuadro</h2>
+    
+    <!-- Formulario para agregar un nuevo cuadro -->
+    <form action="/cuadro" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        
+        <label for="artista">Artista:</label>
+        <input type="text" id="artista" name="artista" required>
+        
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" required>
+        
+        <button type="submit">Agregar Cuadro</button>
+    </form>
 
-<form action="/cuadro" method="post">
-    <label>Título:</label>
-    <input type="text" name="titulo" required>
-    <label>Artista:</label>
-    <input type="text" name="artista" required>
-    <label>Precio:</label>
-    <input type="number" name="precio" step="0.01" required>
-    <button type="submit">Agregar Cuadro</button>
-</form>
-
-<div>
     <h2>Listado de Cuadros</h2>
-    <div th:each="cuadro : ${cuadros}" class="cuadro">
-        <strong th:text="${cuadro.titulo}">Título</strong><br/>
-        <span th:text="${cuadro.artista}">Artista</span><br/>
-        <em th:text="${cuadro.precio}">Precio</em>
-    </div>
-</div>
-
+    <p>Total de cuadros: <span th:text="${total}"></span></p>
+    <ul>
+        <li th:each="cuadro : ${cuadros}">
+            <span th:text="${cuadro.titulo}"></span> - 
+            <span th:text="${cuadro.artista}"></span> - 
+            <span th:text="${cuadro.precio}"></span>
+        </li>
+    </ul>
 </body>
 </html>
