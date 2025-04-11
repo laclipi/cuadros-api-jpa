@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería de Cuadros</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        h1 { color: #4A90E2; }
+        .cuadro { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; }
+        form input, form button { margin-top: 0.5rem; display: block; }
+    </style>
+</head>
+<body>
+<h1>Galería de Cuadros</h1>
+
+<form action="/cuadro" method="post">
+    <label>Título:</label>
+    <input type="text" name="titulo" required>
+    <label>Artista:</label>
+    <input type="text" name="artista" required>
+    <label>Precio:</label>
+    <input type="number" name="precio" step="0.01" required>
+    <button type="submit">Agregar Cuadro</button>
+</form>
+
+<div>
+    <h2>Listado de Cuadros</h2>
+    <div th:each="cuadro : ${cuadros}" class="cuadro">
+        <strong th:text="${cuadro.titulo}">Título</strong><br/>
+        <span th:text="${cuadro.artista}">Artista</span><br/>
+        <em th:text="${cuadro.precio}">Precio</em>
+    </div>
+</div>
+
+</body>
+</html>
